@@ -16,10 +16,23 @@ def display():
     print("Attempts remaining:",attempts_remaining)
 
 def guess_letter(guess, attempts_remaining):
-    pass # remove when you work on the code
+    if guess in word:
+        for i in range(len(word)):
+            letter = word[i]
+            if letter == guess:
+                correct_attempts[i] = guess
+    else:
+        wrong_attempts.append(guess)
+        attempts_remaining -= 1
+    return attempts_remaining
 
 while attempts_remaining > 0 and '_' in correct_attempts:
-    # GAME LOOP TASK
+    display()
+    guess = input("Please give type a letter: ").lower()
+    if guess in wrong_attempts or guess in correct_attempts:
+        print("You've already guessed that letter.")
+    else:
+        attempts_remaining = guess_letter(guess, attempts_remaining)
 
 if '_' not in correct_attempts:
     print("Congratulations! You've guessed the word:", word)
