@@ -42,7 +42,13 @@ def display_videos():
 
 # Plays a specific video. Increases the view count.
 def play_video(video_id):
-    pass # remove when you work on the code
+    if video_id in videos:
+        video_info = videos[video_id]
+        print("Now Playing: " + video_info['title'])
+        print("Description: " + video_info['description'])
+        video_info['views'] += 1
+    else:
+        print("The video ID is invalid.")
 
 # Likes a specific video. Increases the like count.
 def like_video(video_id):
