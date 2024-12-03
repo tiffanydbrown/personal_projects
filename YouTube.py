@@ -52,7 +52,12 @@ def play_video(video_id):
 
 # Likes a specific video. Increases the like count.
 def like_video(video_id):
-    pass # remove when you work on the code
+    if video_id in videos:
+        video_info = videos[video_id]
+        video_info["likes"] += 1
+        print("You liked " + video_info["title"] + ".")
+    else:
+        print("The video ID is invalid.")
 
 # Main loop
 while True:
