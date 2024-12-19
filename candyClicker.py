@@ -38,10 +38,10 @@ while True:
       time.sleep(0.1)
   
   # Fill screen background with turquoise color here
-  screen.fill((138, 255, 239))
+  screen.fill(turquoise)
   
   # Create circle candy here
-  candy = pygame.draw.circle(screen, (0, 0, 255), (250, 250), 30)
+  candy = pygame.draw.circle(screen, (0, 0, 255), (screen_width // 2, screen_height // 2), 30)
 
   draw_text(screen, "Candy: " + str(count), 30, screen_width/2, screen_height/20)
   pygame.display.update()
