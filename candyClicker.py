@@ -30,15 +30,18 @@ while True:
       quit()
       
   # Assign the returned `get_pressed()` value to a variable
+  keystate = pygame.key.get_pressed()
   
   # Complete the condition below to check if the space bar was pressed
-  if :
+  if keystate[pygame.K_SPACE]:
       count += 1
       time.sleep(0.1)
   
   # Fill screen background with turquoise color here
+  screen.fill((138, 255, 239))
   
-  # Create circle candy here 
-  
+  # Create circle candy here
+  candy = pygame.draw.circle(screen, (0, 0, 255), (250, 250), 30)
+
   draw_text(screen, "Candy: " + str(count), 30, screen_width/2, screen_height/20)
   pygame.display.update()
