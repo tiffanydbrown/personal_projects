@@ -20,9 +20,15 @@ class Player(pygame.sprite.Sprite):
     self.rect.bottomleft = (0, s_height)
 
   def update(self):
-    #Movement Keybinds for Player Here
-	
-	
+    keystate = pygame.key.get_pressed()
+    if keystate[pygame.K_UP]:
+      self.rect.y -= 5
+    elif keystate[pygame.K_DOWN]:
+      self.rect.y += 5
+    elif keystate[pygame.K_LEFT]:
+      self.rect.x -= 5
+    elif keystate[pygame.K_RIGHT]:
+      self.rect.x += 5
 
     #Prevents player from leaving boundary
     if self.rect.left <= 0:
@@ -44,10 +50,14 @@ class Enemy(pygame.sprite.Sprite):
 
   def update(self, target):
     if self.rect.x > target.rect.x:
-      #Fill in code here
+      self.rect.x -= self.speed
+    elif self.rect.x < target.rect.x:
+      self.rect.x += self.speed
 
     if self.rect.y > target.rect.y:
-      #Fill in code here
+      self.rect.y -= self.speed
+    elif self.rect.y < target.rect.y:
+      self.rect.y += self.speed
 
 def draw_text(color, text, font, size, x, y, surface):
   font_name = pygame.font.match_font(font)
