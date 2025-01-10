@@ -70,8 +70,8 @@ def draw_text(color, text, font, size, x, y, surface):
     
     
 #IMPORT IMAGES:
-player_img = pygame.image.load('player_image.filetype')
-enemy_img = pygame.image.load('enemy_image.filetype')
+player_img = pygame.image.load('images/elephant.png')
+enemy_img = pygame.image.load('images/snake.png')
 
 
 #CREATING SPRITE GROUPS:
@@ -79,31 +79,43 @@ allSprites = pygame.sprite.Group()
 enemySprites = pygame.sprite.Group()
 
 #CREATING OBJECTS:
-
+player = Player(player_img)
+enemy = Enemy(enemy_img, 50, 50)
 
 #ADD OBJECTS TO GROUPS:
+allSprites.add(player)
+enemySprites.add(enemy)
 
 
 time = 0
 reset = 0
 game_state = "Play"
+total_time_limit = 30
+
 while True:
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
       pygame.quit()
       quit()
 
-  if game_state == "Lose":
-    #BLIT GAMEOVER BACKGROUND TO SCREEN  
+  if game_state = "Lose":
+    #BLIT GAMEOVER BACKGROUND TO SCREEN
+    screen.fill(white)
+    draw_text(black, "Game Over!", "arial", 40, s_width // 2, s_height // 2, screen)  
   else:
     screen.fill(white)
+    screen.blit(player.image, player.rect)
+    screen.blit(enemy.image, enemy.rect)
     
     #Collisions Here
-   
+    collisions = pygame.sprite.spritecollide(player, enemySprites, False)
+    
+    if collisions:
+      game_state = "Lose"
   
     #TIMER FOR PLAYER:
-    time = pygame.time.get_ticks()/1000
-    #Draw Text for correct time:
+    remaining_time = max(0, total_time_limit - int(pygame.time.get_ticks() / 1000))
+    draw_text(black, f"Time: {remaining_time}s", "arial", 20, s_width // 2, 20, screen)
     
     
     #TEN SECOND TIMER FOR ENEMY:
@@ -115,11 +127,12 @@ while True:
     
     
     #DRAWING TO SCREEN:
-    
+    allSprites.draw(screen)
+    enemySprites.draw(screen)
   
     #UPDATE GROUPS:
-    
-  
+    allSprites.update()
+    enemySprites.update()
     
   clock.tick(40)
   pygame.display.update()
