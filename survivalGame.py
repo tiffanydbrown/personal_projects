@@ -98,7 +98,7 @@ while True:
       pygame.quit()
       quit()
 
-  if game_state = "Lose":
+  if game_state == "Lose":
     #BLIT GAMEOVER BACKGROUND TO SCREEN
     screen.fill(white)
     draw_text(black, "Game Over!", "arial", 40, s_width // 2, s_height // 2, screen)  
